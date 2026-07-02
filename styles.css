@@ -433,6 +433,7 @@ button {
   inset: 0;
   background: url('assets/maharaj2.jpg') center / cover no-repeat;
   filter: brightness(0.8) saturate(1.1);
+  will-change: transform;
 }
 
 .hero-overlay {
@@ -506,12 +507,25 @@ button {
 
 .btn-primary {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-bg);
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(184, 150, 62, 0.4);
+  animation: pulse-glow 2.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 4px 15px rgba(184, 150, 62, 0.4);
+  }
+  100% {
+    box-shadow: 0 4px 25px rgba(184, 150, 62, 0.9), 0 0 10px rgba(184, 150, 62, 0.5);
+  }
 }
 
 .btn-primary:hover {
   background: var(--color-primary-light);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(184, 150, 62, 0.6);
 }
 
 .btn-secondary {

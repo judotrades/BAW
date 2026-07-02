@@ -10,7 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   initSatsangCountdown();
   initContactForm();
   initChatbot();
+  initParallax();
 });
+
+/* --- Parallax Effect --- */
+function initParallax() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (!heroBg) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    // Move the background down slightly as we scroll down to create parallax
+    heroBg.style.transform = `translateY(${scrollY * 0.4}px)`;
+  });
+}
 
 /* --- Navigation --- */
 function initNavigation() {
