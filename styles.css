@@ -454,30 +454,34 @@ button {
 
 .hero-label {
   font-family: var(--font-hindi);
-  font-size: 0.95rem;
-  color: var(--color-primary-muted);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFFFFF;
   letter-spacing: 0.15em;
   margin-bottom: var(--space-4);
   display: block;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
 .hero h1 {
   font-family: var(--font-serif);
   font-size: clamp(2.6rem, 6vw, 4.2rem);
-  font-weight: 400;
-  color: var(--color-text-inverse);
+  font-weight: 600;
+  color: #FFFFFF;
   line-height: 1.1;
   margin-bottom: var(--space-6);
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .hero-desc {
-  font-size: 1rem;
-  color: var(--color-text-inverse-muted);
+  font-size: 1.1rem;
+  color: #F8F8F8;
   max-width: 520px;
   margin: 0 auto var(--space-10);
   line-height: 1.75;
-  font-weight: 300;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .hero-actions {
@@ -1600,34 +1604,13 @@ button {
     color: var(--color-primary-muted) !important;
   }
 
-  .hero-label {
-    margin-bottom: var(--space-2);
-  }
-
   .hero h1 {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
-    margin-bottom: var(--space-3);
-  }
-
-  .hero-desc {
-    margin-bottom: var(--space-6);
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .hero-actions {
     flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-3);
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-    padding: var(--space-3);
+    align-items: center;
   }
 
   .stats-grid {
