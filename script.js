@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceFilter();
   initSatsangCountdown();
   initContactForm();
+  initChatbot();
 });
 
 /* --- Navigation --- */
@@ -84,7 +85,7 @@ function initCounterAnimation() {
     (function tick(now) {
       const t = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(ease * target).toLocaleString() + (target === 24 ? '/' : '+');
+      el.textContent = Math.round(ease * target).toLocaleString() + (target === 24 ? '/7' : '+');
       if (t < 1) requestAnimationFrame(tick);
     })(start);
   }
@@ -94,12 +95,21 @@ function initCounterAnimation() {
 function initServiceFilter() {
   const btns = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.service-card');
+  const grid = document.getElementById('servicesGrid');
 
   btns.forEach(btn => btn.addEventListener('click', () => {
     const f = btn.dataset.filter;
     btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
+
+    if (f === 'all') {
+      grid.classList.add('is-carousel');
+      grid.classList.remove('is-list');
+    } else {
+      grid.classList.remove('is-carousel');
+      grid.classList.add('is-list');
+    }
 
     cards.forEach((card, i) => {
       const show = f === 'all' || card.dataset.category === f;
@@ -185,5 +195,54 @@ function initContactForm() {
       btn.style.opacity = '1';
       form.reset();
     }, 600);
+  });
+}
+
+/* --- Chatbot Widget --- */
+function initChatbot() {
+  const container = document.getElementById('chatbot-container');
+  const toggle = document.getElementById('chatbot-toggle');
+  const closeBtn = document.getElementById('chatbot-close');
+  const msgs = document.getElementById('chatbot-messages');
+  const options = document.querySelectorAll('.chat-option');
+
+  if (!container || !toggle) return;
+
+  toggle.addEventListener('click', () => {
+    container.classList.toggle('active');
+  });
+  closeBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const target = opt.dataset.target;
+      const text = opt.textContent;
+
+      // Add user message
+      const uMsg = document.createElement('div');
+      uMsg.className = 'chat-msg user-msg';
+      uMsg.textContent = text;
+      msgs.appendChild(uMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+
+      // Simulate bot thinking
+      setTimeout(() => {
+        const bMsg = document.createElement('div');
+        bMsg.className = 'chat-msg bot-msg';
+        if (target === 'whatsapp') {
+          bMsg.innerHTML = 'Connecting you to our WhatsApp... <br><a href="https://wa.me/919999999999" target="_blank" style="color:var(--color-primary); font-weight:bold; text-decoration:underline;">Click here to continue</a>';
+          window.open('https://wa.me/919999999999', '_blank');
+        } else if (target === 'telegram') {
+          bMsg.innerHTML = 'Connecting you to our Telegram... <br><a href="https://t.me/yourtelegram" target="_blank" style="color:var(--color-primary); font-weight:bold; text-decoration:underline;">Click here to continue</a>';
+          window.open('https://t.me/yourtelegram', '_blank');
+        } else if (target === 'satsang') {
+          bMsg.textContent = 'Our Thursday Satsang is a beautiful gathering. You can join us at our Pune math or connect via WhatsApp for online links.';
+        }
+        msgs.appendChild(bMsg);
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 600);
+    });
   });
 }
