@@ -84,10 +84,15 @@ html {
    ============================================================ */
 .marquee-container {
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
   mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  scrollbar-width: none; /* Firefox */
+}
+
+.marquee-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .marquee-track {
@@ -95,27 +100,28 @@ html {
   gap: var(--space-6);
   width: max-content;
   padding: var(--space-4) 0;
-  animation: scroll-marquee linear infinite;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+/* Vertical Modifier for Services */
+.marquee-vertical {
+  height: 600px; /* Fixed height for vertical roll */
+  mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
 }
 
+.marquee-vertical .marquee-track {
+  flex-direction: column;
+  width: 100%;
+  height: max-content;
+}
 
+.marquee-vertical .service-card {
+  flex: 0 0 auto;
+}
 
 .gallery-item {
   flex: 0 0 300px;
   height: 300px;
-}
-
-@keyframes scroll-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 body {

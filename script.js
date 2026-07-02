@@ -16,11 +16,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* --- Marquees (Film Roll) --- */
 function initMarquees() {
-  const tracks = document.querySelectorAll('.marquee-track');
-  tracks.forEach(track => {
-    // Clone the inner HTML twice to ensure a seamless infinite scroll
+  const containers = document.querySelectorAll('.marquee-container');
+  
+  containers.forEach(container => {
+    const track = container.querySelector('.marquee-track');
+    if (!track) return;
+
+    // Clone the inner HTML to ensure a seamless infinite scroll
     const content = track.innerHTML;
     track.innerHTML = content + content;
+
+    let isHovered = false;
+    let isTouching = false;
+    let scrollPos = 0;
+    const speedAttr = track.getAttribute('data-speed');
+    const speed = speedAttr ? parseFloat(speedAttr) : 1;
+    const isVertical = container.classList.contains('marquee-vertical');
+
+    // Pause on interaction
+    container.addEventListener('mouseenter', () => isHovered = true);
+    container.addEventListener('mouseleave', () => isHovered = false);
+    container.addEventListener('touchstart', () => isTouching = true, {passive: true});
+    container.addEventListener('touchend', () => {
+      setTimeout(() => isTouching = false, 1500); // Resume shortly after touch ends
+    });
+
+    function step() {
+      if (!isHovered && !isTouching) {
+        if (isVertical) {
+          container.scrollTop += speed;
+          if (container.scrollTop >= track.scrollHeight / 2) {
+            container.scrollTop = 0; // Snap back for infinite loop
+          }
+        } else {
+          container.scrollLeft += speed;
+          if (container.scrollLeft >= track.scrollWidth / 2) {
+            container.scrollLeft = 0; // Snap back for infinite loop
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    
+    // Start animation loop
+    requestAnimationFrame(step);
   });
 }
 
