@@ -83,14 +83,9 @@ html {
    MARQUEE (FILM ROLL)
    ============================================================ */
 .marquee-container {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
   overflow: hidden;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
@@ -107,9 +102,7 @@ html {
   animation-play-state: paused;
 }
 
-.lineage-card {
-  flex: 0 0 320px;
-}
+
 
 .gallery-item {
   flex: 0 0 300px;
@@ -754,7 +747,9 @@ button {
    LINEAGE
    ============================================================ */
 .lineage-grid {
-  /* Replaced by marquee-container */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
 }
 
 .lineage-card {
