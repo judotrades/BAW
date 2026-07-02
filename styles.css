@@ -79,6 +79,52 @@ html {
   scroll-padding-top: var(--nav-height);
 }
 
+/* ============================================================
+   MARQUEE (FILM ROLL)
+   ============================================================ */
+.marquee-container {
+  width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--space-6);
+  width: max-content;
+  padding: var(--space-4) 0;
+  animation: scroll-marquee linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.lineage-card {
+  flex: 0 0 320px;
+}
+
+.gallery-item {
+  flex: 0 0 300px;
+  height: 300px;
+}
+
+@keyframes scroll-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 body {
   font-family: var(--font-sans);
   font-size: 15px;
@@ -708,9 +754,7 @@ button {
    LINEAGE
    ============================================================ */
 .lineage-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+  /* Replaced by marquee-container */
 }
 
 .lineage-card {
@@ -817,29 +861,7 @@ button {
 }
 
 .services-grid {
-  display: flex;
-  gap: var(--space-6);
-  padding: var(--space-4) 0;
-}
-
-.services-grid.is-carousel {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
-}
-
-.services-grid.is-carousel::-webkit-scrollbar {
-  height: 6px;
-}
-
-.services-grid.is-carousel::-webkit-scrollbar-thumb {
-  background: var(--color-primary-muted);
-  border-radius: var(--radius-full);
-}
-
-.services-grid.is-list {
-  flex-direction: column;
+  /* Replaced by marquee-container */
 }
 
 .service-card {
@@ -853,15 +875,7 @@ button {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-}
-
-.services-grid.is-carousel .service-card {
   flex: 0 0 320px;
-  scroll-snap-align: center;
-}
-
-.services-grid.is-list .service-card {
-  flex: 1 1 auto;
 }
 
 .service-card:hover {
@@ -1069,11 +1083,7 @@ button {
    GALLERY PLACEHOLDER
    ============================================================ */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  /* Replaced by marquee-container */
 }
 
 .gallery-item {

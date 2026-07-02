@@ -11,7 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initChatbot();
   initParallax();
+  initMarquees();
 });
+
+/* --- Marquees (Film Roll) --- */
+function initMarquees() {
+  const tracks = document.querySelectorAll('.marquee-track');
+  tracks.forEach(track => {
+    // Clone the inner HTML twice to ensure a seamless infinite scroll
+    const content = track.innerHTML;
+    track.innerHTML = content + content;
+  });
+}
 
 /* --- Parallax Effect --- */
 function initParallax() {
