@@ -861,14 +861,43 @@ button {
   border-color: var(--color-text);
 }
 
+#services .filter-btn {
+  color: #E2D192;
+  border: 1px solid rgba(196, 168, 80, 0.3);
+}
+
+#services .filter-btn:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+#services .filter-btn.active {
+  background: var(--color-primary);
+  color: #0B1B3D;
+  border-color: var(--color-primary);
+}
+
+#services {
+  background: #0B1B3D; /* Deep Blue */
+}
+
+#services .section-intro .heading-lg,
+#services .section-intro .label {
+  color: var(--color-primary); /* Golden */
+}
+
+#services .section-intro p {
+  color: #E2D192; /* Lighter golden/ochre text */
+}
+
 .services-grid {
   /* Replaced by marquee-container */
 }
 
 .service-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-primary);
+  background: #112B5C; /* Slightly lighter blue for cards */
+  border: 1px solid rgba(196, 168, 80, 0.3); /* Golden border */
+  border-top: 3px solid var(--color-primary); /* Golden top border */
   border-radius: var(--radius-md);
   padding: var(--space-8) var(--space-6);
   transition: transform var(--transition), box-shadow var(--transition);
@@ -895,7 +924,7 @@ button {
 
 .service-card p {
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  color: #E2D192; /* Lighter golden/ochre text */
   line-height: 1.7;
   margin-bottom: var(--space-6);
   flex: 1;
