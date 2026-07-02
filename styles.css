@@ -1600,13 +1600,34 @@ button {
     color: var(--color-primary-muted) !important;
   }
 
+  .hero-label {
+    margin-bottom: var(--space-2);
+  }
+
   .hero h1 {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-desc {
+    margin-bottom: var(--space-6);
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   .hero-actions {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: var(--space-3);
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: var(--space-3);
   }
 
   .stats-grid {
